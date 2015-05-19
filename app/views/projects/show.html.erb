@@ -10,12 +10,13 @@
 
 <p>
   <strong>Product(s):</strong>
-  <%= @project.product %>
+  <% @project.products.each do |product| %>
+    <%= product.name %>
+  <% end %>
 </p>
 
 <p>
   <strong>Image:</strong>
-  <%= @project.thumbnail %>
+  <%= image_tag @project.image.url, width: 600 %>
 </p>
 
-<%= image_tag @project.image.url, width: 600 %><br>

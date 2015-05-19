@@ -1,4 +1,42 @@
-<h2 class='text-center'>Current Installed Projects</h2>
+<h2 class='text-center'>Installed Projects</h2>
+
+
+
+<script type="text/javascript">
+  var App = {
+    initialize: function() {
+      var mapOptions = {
+        zoom: 12,
+        center: new google.maps.LatLng(40.7127, -74.0059)
+      };
+
+      var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+      <% @projects.each do |project| %>
+
+        var position = new google.maps.LatLng(<%= project.latitude %>, <%= project.longitude %>);
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: '<%= project.name %>, <%= project.address %>'
+        });
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infoWindow.setContent('<h3><%= link_to project.name, project_path(project) %></h3><p><%= project.address %></p>');
+            infoWindow.open(map, marker);
+          }
+        })(marker, i));
+
+      <% end %>
+    }
+  };
+
+  google.maps.event.addDomListener(window, 'load', App.initialize);
+</script>
+
+<div id="map-canvas"></div>
 
 <table>
   <tr>
@@ -10,12 +48,11 @@
     <tr>
       <td><%= project.name %></td>
       <td><%= project.address %></td>
-      <td><%= link_to 'Show', project_path(project) %></td>
+      <td><%= link_to 'View', project_path(project) %></td>
       <td><%= link_to 'Edit', edit_project_path(project) %></td>
-      <td><%= link_to 'Destroy', project_path(project),
+      <td><%= link_to 'Delete', project_path(project),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
-
