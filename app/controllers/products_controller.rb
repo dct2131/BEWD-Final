@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :delete]
 
   def index
     @products = Product.all
@@ -46,6 +47,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name)
+    params.require(:product).permit(:name, {:project_ids => []})
   end
 end

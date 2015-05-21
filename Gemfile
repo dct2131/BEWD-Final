@@ -51,3 +51,4 @@ gem 'geocoder'
 
 gem 'devise'
 
+gem 'simple_form'
