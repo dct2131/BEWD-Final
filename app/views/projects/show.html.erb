@@ -1,12 +1,10 @@
 <div class="container-fluid">
 <p>
-  <strong>Project:</strong>
-  <%= @project.name %>
+  <h3 class='text-center'><%= @project.name %></h3>
 </p>
  
 <p>
-  <strong>Address:</strong>
-  <%= @project.address %>
+  <h4 class='text-center'><%= @project.address %></h4>
 </p>
 
 <p>
@@ -22,16 +20,12 @@
 </table>
 </p>
 
-<p>
-  <%= image_tag @project.image.url, width: 500 %>
+<p align="center">
+  <%= image_tag @project.image.url, width: 700 %>
 </p>
 
 <p>
   <strong><%= link_to 'Edit Project', edit_project_path %></strong>
-</p>
-
-<p>
-  <strong><%= link_to 'Back', projects_path %></strong>
 </p>
 
 </div>
