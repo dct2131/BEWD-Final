@@ -52,3 +52,8 @@ gem 'geocoder'
 gem 'devise'
 
 gem 'simple_form'
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
